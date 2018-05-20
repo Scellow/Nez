@@ -277,8 +277,8 @@ namespace Nez.Spatial
 			// TODO: check gridBounds to ensure the ray starts/ends in the grid. watch out for end cells since they report out of bounds due to int comparison
 
 			// what voxel are we on
-			var intX = Mathf.fastFloorToInt( start.X );
-			var intY = Mathf.fastFloorToInt( start.Y );
+			var intX = Mathf.floorToInt( start.X );
+			var intY = Mathf.floorToInt( start.Y );
 
 			// which way we go
 			var stepX = Math.Sign( ray.direction.X );
@@ -470,7 +470,7 @@ namespace Nez.Spatial
 		[MethodImpl( MethodImplOptions.AggressiveInlining )]
 		long getKey( int x, int y )
 		{
-			return (long)x << 32 | (long)(uint)y;
+			return unchecked((long)x << 32 | (uint)y);
 		}
 
 
